@@ -176,7 +176,7 @@ if (params$plot_volcano) {
   
   top_genes <- head(res, n = params$top_genes)
 
-  ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = sig)) +
+  plot1 <- ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = sig)) +
     geom_point(alpha = 0.7) +
     geom_text_repel(data = top_genes, aes(label = rownames(top_genes)), 
                     color = 'black', size = 2, max.overlaps = Inf) +
@@ -185,6 +185,7 @@ if (params$plot_volcano) {
     theme_bw() + 
     theme(legend.position = 'none',
           panel.grid = element_blank())
+  ggsave("../figures/degplot.png", plot = plot1, width = 6, height = 4, dpi = 300)
 
   # Convert ggplot to plotly for interactivity
   # ggplotly(p)

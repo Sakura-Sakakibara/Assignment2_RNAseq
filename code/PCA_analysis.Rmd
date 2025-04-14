@@ -131,10 +131,11 @@ cars.***
 df$country <- c(rep("Japan", 3), rep("US",4), rep("Europe", 7),rep("US",3), "Europe", rep("Japan", 3), rep("US",4), rep("Europe", 3), "US", rep("Europe", 3))
 
 # ggbiplot - group cars based on the country of origin
-ggbiplot(df.pca, ellipse = TRUE,  ellipse.prob = 0.68,  
+pcaplot <- ggbiplot(df.pca, ellipse = TRUE,  ellipse.prob = 0.68,  
                   groups = df$country) + xlim(c(-2,2)) + ylab ('PC2 (23.12%)') + 
                   xlab('PC1 (62.84%)') + 
                   geom_text_repel(label = rownames(df), max.overlaps = Inf)
+ggsave("../figures/pcaplot.png", plot = pcaplot, width = 6, height = 4, dpi = 300)
 ```
 
 ***From here we can see that US and Japanese cars form 2 distinct
